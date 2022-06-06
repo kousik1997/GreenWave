@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+
+</h:head>
+
+<h:body>
+
+ <h3>Please enter your details</h3>
+	<h:form>	
+		<h:outputLabel value="Employee Name "></h:outputLabel>
+		<h:inputText value="#{hello.name}"></h:inputText>
+		<h:outputLabel value="Employee id "></h:outputLabel>
+		<h:inputText value="#{hello.id}"></h:inputText>
+		<h:outputLabel value="Employee Department "></h:outputLabel>
+		<h:inputText value="#{hello.department}"></h:inputText>
+		<br></br>
+		
+		<h:commandButton value="Save" action="#{hello.show()}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>
