@@ -1,0 +1,950 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+
+
+	<title>#{pseudoDashboard.selectedFrame}</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="mobile-web-app-capable" content="yes"/>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300&amp;display=swap" rel="stylesheet"/>
+	
+	<!-- favIcon -->
+    <link rel="icon" href="images/GW_Logo.png" type="image/png"/> 
+    
+	<!-- Bootstrap CSS -->
+	<h:outputStylesheet name="bootstrap-4.0.0-dist/css/bootstrap.min.css"/>
+
+
+	<style>
+	.ui-datatable-tablewrapper {
+		overflow: auto !important;
+	}
+	
+	.ui-widget-content {
+	 	color: #ffffff00; 
+	}
+	
+	/* *************************** Select CheckBox Menu *************************** */
+	
+	.ui-selectcheckboxmenu {
+		font-family: "Montserrat", sans-serif !important;
+		font-weight: normal !important;
+		/* padding: 0.4rem !important; */
+		margin-top: 0.4rem !important;
+		background-color: none !important;
+		background-color: rgba(255, 255, 255, 0.1) !important;
+		backdrop-filter: blur(10px) !important;
+		width: 12rem;
+		height: 1.8rem;
+	} 
+	
+	.ui-selectcheckboxmenu-multiple .ui-selectcheckboxmenu .ui-widget .ui-state-default .ui-corner-all {
+		width: 13.5rem;
+	}
+	
+	.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+	    width: 12rem !important;
+	}
+
+	.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
+	    left: 12.5rem !important;
+	}
+	
+	.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
+		width: 0;
+	}
+	
+	.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close {
+		background-color: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(10px);
+		/* margin: 0px !important; */
+		/* margin-right: 5px !important; */
+		margin-top: 9px !important;
+	}
+	
+	.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon {
+	    top: 10px !important;
+	}
+	
+	.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-list-item label {
+	    margin: 0px !important;
+	}
+	
+	
+	
+	
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	
+	
+	/* *************************** CheckBox *************************** */
+	
+	.ui-chkbox-box {
+		background-color: rgba(255, 255, 255, 0.1) !important;
+		backdrop-filter: blur(10px) !important;
+	}
+	
+	.ui-selectcheckboxmenu-header .ui-chkbox {
+	    margin-top: 0.7rem !important;
+	}
+	
+	
+
+	
+	
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	
+	
+	/* *************************** Data Table *************************** */	
+		
+		.ui-datatable {
+			font-family: "Montserrat", sans-serif !important;
+			font-weight: normal !important;
+		    border-radius: 3px;
+		   	border: none !important;
+		    border-color: #2a2b2d !important; 
+		    color: white !important;  
+		    border: 1px solid rgba(255, 255, 255, 0.1) !important;    
+		}
+		
+		.ui-datatable * {
+	     	border : 0px !important;
+		}
+	
+		.ui-datatable-data {
+			background-color: rgba(255, 255, 255, 0.0) !important; 
+		  	/* backdrop-filter: blur(10px) !important; */
+		  	color: white !important;
+		}
+		
+		.ui-datatable thead th {
+			font-family: "Montserrat", sans-serif !important;
+			font-weight: normal !important;
+		    border-radius: 0px;
+		    color: white !important;
+		    font-size: 1.5rem !important;
+		    font-weight: 300 !important;
+		    text-shadow: none !important;
+		    /* border-width: 1px !important; */
+		    background-color: rgba(255, 255, 255, 0.1) !important; 
+		  	backdrop-filter: blur(10px) !important;
+		  	border: 1px solid rgba(255, 255, 255, 0.01) !important;
+		}
+		
+		.ui-datatable thead th, .ui-datatable tfoot td {
+		    /* text-align: left !important; */
+		}
+		
+		.ui-datatable-header {
+			font-family: "Montserrat", sans-serif !important;
+			font-weight: normal !important;
+			border-color: #2a2b2d !important;
+		   /*  border-radius: 0.5rem !important; */
+		   	background: rgb(2,0,36);
+			/* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(120,84,206,1) 0%, rgba(164,83,193,1) 34%, rgba(208,76,189,1) 100%); */
+		    color: white !important;
+		    text-shadow: none;
+		    font-size: 1rem !important;
+		}
+		
+		.ui-datatable-footer {
+			
+		
+		}
+	
+		.ui-column-title {
+			font-size: 1rem !important;
+		}
+		    
+		.ui-datatable tr {
+		    border-radius: 0px;
+		    font-size: 0.8rem;
+		    border-width: 0px !important;
+		    background-color: rgba(255, 255, 255, 0.0) !important; 
+		    color: white !important;
+		    /* border: 1px solid red !important; */
+		}
+		
+		.ui-datatable tbody td {
+			border: 1px solid rgba(255, 255, 255, 0.05) !important;
+		}
+		
+		.ui-datatable-tablewrapper {
+			overflow: hidden !important;
+		}
+	
+	 	.ui-widget-header {
+			background: none !important;
+		}	
+		
+		.ui-datatable-tablewrapper {
+		    overflow: auto !important;
+		}
+		
+		.myDatatable.ui-datatable table {
+			width: auto;
+			min-width: 100%;		
+		}
+		
+	
+
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */		
+
+		
+	/* *************************** Paginator *************************** */	
+	
+		.ui-paginator {
+			margin: 0.5rem !important;
+		    border-radius: 0px !important;
+		    background-color: rgba(255, 255, 255, 0.0) !important; 
+		    color: white !important;
+		    font-size: 0.7rem;
+		    font-weight: narrow;
+		    text-shadow: none;
+		    height: 1.85rem !important;
+		    /* background: rgb(2,0,36);
+			background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(120,84,206,1) 0%, rgba(96,87,204,1) 11%, rgba(150,82,200,1) 100%); */
+		}
+		
+		.ui-state-active {
+		    /* background: #FFB300 !important; */
+		    background-color: rgba(255, 255, 255, 0.0) !important; 
+		  	backdrop-filter: blur(10px) !important; 
+		    
+		}
+		
+		.ui-paginator .ui-paginator-page, .ui-paginator .ui-paginator-next, .ui-paginator .ui-paginator-last, .ui-paginator .ui-paginator-first, .ui-paginator .ui-paginator-prev{
+		    background: #f0f1f2;
+		    color: white;
+		    border: none;
+		    border-radius: 0px;; 
+		}
+		
+		.ui-paginator .ui-paginator-rpp-options {
+			background: #354d5a00 -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0.0)),to(rgba(255,255,255,0.0))); 
+		  	 
+		}
+		
+		.ui-state-default {
+		    -moz-box-shadow: inset 0 1px 0 #fff !important;
+		    -webkit-box-shadow: inset 0 1px 0 #fff !important;
+		    box-shadow: inset 0 0px 0 #fff !important;
+		}
+		
+		.ui-paginator-next {
+		    color: white;
+		}
+		
+		.ui-paginator .ui-paginator-rpp-options {
+			color: white;
+		}
+	
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+		
+		
+	/* *************************** Timeline *************************** */	
+		
+	div.timeline-frame {  
+        /* border-color: #5D99C3;  */ 
+        border-radius: .3rem !important; 
+        background-color: rgba(255, 255, 255, 0.1) !important; 
+		backdrop-filter: blur(10px) !important; 
+		border: 1px solid rgba(255, 255, 255, 0.1) !important;
+		color: White !important; 
+    }  
+    
+    .vis-timeline {
+    	border-radius: .5rem !important; 
+    	color: White !important; 
+    	
+    }
+    
+    .vis-time-axis .vis-text {
+    
+    	color: white;
+    	
+    }
+    
+    .vis-labelset .vis-label {
+    	color: white;
+    }
+    
+    div.unavailable {  
+        background: rgba(240, 48, 48, 0.5) !important;  /* red */  
+        border-color: #bd2828 !important;     /* red */  
+        color: White !important;
+        
+    }  
+ 
+    div.available {  
+        background: rgba(0, 255, 8, 0.2) !important;  /* green */  
+        border-color: #00ff08 !important;     /* green */ 
+        color: White !important; 
+    }  
+ 
+    div.maybe {  
+        background: rgba(255, 165, 0, 0.5) !important;  /* orange */  
+        border-color: #cc8100 !important;     /* orange */  
+        color: White !important;
+    }  	
+	
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	/* ********************************************************************************* */
+	
+	.jqplot-target {
+		color: white !important;
+	}
+	
+	.jqplot-table-legend { 
+		width: auto !important; 
+	}
+	
+	table.jqplot-table-legend {
+		background-color: transparent !important;
+		border: none !important;
+		/* width: 100px !important;  */
+	}
+	
+	div.jqplot-table-legend-swatch-outline {
+		border: none !important;
+		color: white !important;
+	}
+	
+	.ui-panelgrid .ui-panelgrid-cell {
+	    border-width: 1px;
+	    border-style: solid;
+	    border-color: inherit;
+	    padding: 0px 0px;
+	}
+	
+	.ui-dashboard-column {
+	    float: left;
+	    padding-bottom: 20px !important;
+	}
+	
+	.ui-panel-content {
+	    padding: 0rem !important; 
+   	}
+   	
+   	/*Loader*/
+   	.loader {
+  position: absolute;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;  
+}
+
+.inner.one {
+  left: 0%;
+  top: 0%;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 3px solid #EFEFFA;
+}
+
+.inner.two {
+  right: 0%;
+  top: 0%;
+  animation: rotate-two 1s linear infinite;
+  border-right: 3px solid #EFEFFA;
+}
+
+.inner.three {
+  right: 0%;
+  bottom: 0%;
+  animation: rotate-three 1s linear infinite;
+  border-top: 3px solid #EFEFFA;
+}
+
+@keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+	</style>
+
+
+<script>
+
+</script>
+
+
+</h:head>
+<h:body style="background: url(images/xdgy24wnj0431.jpg); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+
+	<h:outputScript name="bootstrap-4.0.0-dist/js/bootstrap.min.js"/>
+	<h:outputStylesheet library="css" name="Styles_GlassTheme_Responsive_V1.0.css" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+	<h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+	
+	
+	<nav class="navbar justify-content-between sticky-top shadow" style="background-color: rgba(255, 255, 255, 0.1) !important; backdrop-filter: blur(10px);">
+		<h:form class="form-inline">
+		    <a onclick="PF('menu').show()"><i class="fa fa-bars" aria-hidden="true"></i></a>
+		    <a onclick="toggleSearchBar()"><i class="fa fa-search" aria-hidden="true"></i></a>
+		    <h2 style="color: white !important; padding-left: 1rem !important; padding-top: 0.6rem !important; font-family: Montserrat, sans-serif !important; font-weight: normal !important; font-size: 0.85rem !important;">#{pseudoDashboard.selectedFrame}</h2>
+		    <p:commandButton ajax="false" icon="fa fa-file-excel-o" action="#{excelDownload.exportToExcel(pseudoDashboard.riModels,pseudoDashboard.frame)}" 
+	  		 rendered="#{pseudoDashboard.showData}" />
+	  		<p:tooltip for="@previous" value="Export the report" style="z-index:10000 !important;" trackMouse="true"></p:tooltip>
+	  	</h:form>
+	  	<h:form class="form-inline">
+	  		
+		    <p:graphicImage value="images/GW_Logo.png" style="height: 2rem; width: 2rem; margin-right: 0.5rem;"/>
+		    <a><i class="fas fa-sign-out-alt"></i></a>
+	  	</h:form>
+	</nav>
+	
+	<f:metadata>
+		<f:viewParam name="selectedFrame" value="#{menuInfo.frameName}" />
+	</f:metadata>
+
+	<h:form id="menu">
+		<p:sidebar widgetVar="menu" baseZIndex="10000">
+
+			<!-- <p:commandButton value="Cancel" oncomplete="PF('menu').hide()"/> -->
+			<br />
+			<br />
+			<p:slideMenu model="#{menuInfo.model}" expanded="false" toggleable="true" stateful="false" style="border:none;  overflow-y: auto; height: 39rem; margin-left: 0px !important;" />
+		</p:sidebar>
+	</h:form>
+
+
+	<!-- Side Search Bar  -->
+	<div id="mySidebar" class="searchBar" style="z-index: 1000">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		
+		<h:form id="frm1">
+		<h:inputText value="#{pseudoDashboard.viewPortSize}" id="hidden2" style="visibility:hidden;" />
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-12">
+						<p:dataTable var="vis"
+								rendered="#{pseudoDashboard.inputFieldModel.fields.size() gt 0 ? true : false}"
+								value="#{pseudoDashboard.inputFieldModel.fields}" styleClass="myDatatable">
+
+								
+
+								<!-- For Alpha Numeric -->
+
+								<p:column rendered="#{vis.fieldType eq 'Alphanumeric'}">
+									<h:outputText value="#{vis.fieldName}" />
+								</p:column>
+								<p:column rendered="#{vis.fieldType eq 'Alphanumeric'}">
+									<h:inputText value="#{vis.value}"
+										style="font-family: Montserrat, sans-serif !important;
+												font-weight: normal !important;
+												background-color: rgba(255, 255, 255, 0.1) !important;
+												backdrop-filter: blur(10px) !important;
+												border: none !important;
+												margin: 0.3rem !important;
+												padding: 0.3rem !important;
+												color: white !important;
+												border-radius: 3px !important;" />
+								</p:column>
+
+								<!-- For Date -->
+
+								<p:column rendered="#{vis.fieldType eq 'Date'}">
+									<h:outputText value="#{vis.fieldName}" />
+								</p:column>
+								<p:column rendered="#{vis.fieldType eq 'Date'}">
+									<p:calendar value="#{vis.value}" pattern="dd-MM-yyyy"
+										mindate="#{vis.mindate}" showButtonPanel="true"
+										showOn="button" navigator="true" maxdate="#{vis.maxdate}">
+										<p:ajax event="dateSelect" update="@form" />
+									</p:calendar>
+								</p:column>
+
+								<!-- For Drop Down -->
+
+								<p:column rendered="#{vis.fieldType eq 'Dropdown'}">
+									<h:outputText value="#{vis.fieldName}" />
+								</p:column>
+								<p:column
+									rendered="#{vis.fieldType eq 'Dropdown' and !vis.multiselect}">
+									<p:selectOneMenu value="#{vis.strValue}">
+										<f:selectItems value="#{vis.dropDownItem}" />
+										<p:ajax event="change" update="@form" />
+									</p:selectOneMenu>
+								</p:column>
+								<p:column
+									rendered="#{vis.fieldType eq 'Dropdown' and vis.multiselect}">
+									<p:selectCheckboxMenu multiple="false" filter="true"
+										value="#{vis.strLstValue}" filterMatchMode="contains">
+										<f:selectItems value="#{vis.dropDownItem}" />
+										<p:ajax event="change" update="@form" />
+										<p:ajax event="toggleSelect" update="@form" />
+									</p:selectCheckboxMenu>
+								</p:column>
+
+								<!-- For Tree -->
+								<p:column rendered="#{vis.fieldType eq 'Tree'}">
+									<h:outputText value="#{vis.fieldName}" />
+								</p:column>
+								<p:column rendered="#{vis.fieldType eq 'Tree'}">
+									<p:tree value="#{vis.getTreeFromModelInfo()}" var="node">
+										<p:treeNode>
+											<h:outputText value="#{node.name}" />
+										</p:treeNode>
+									</p:tree>
+								</p:column>
+
+								<!-- for sql drop down -->
+								<p:column rendered="#{vis.fieldType eq 'SQL'}">
+									<h:outputText value="#{vis.fieldName}" />
+								</p:column>
+								<p:column
+									rendered="#{vis.fieldType eq 'SQL' and !vis.multiselect}">
+									<p:selectOneMenu value="#{vis.strValue}">
+										<f:selectItems
+											value="#{vis.executedQuery(pseudoDashboard.inputFieldModel.fields)}" />
+										<p:ajax event="change" update="@form" />
+									</p:selectOneMenu>
+								</p:column>
+								<p:column
+									rendered="#{vis.fieldType eq 'SQL' and vis.multiselect}">
+									<p:selectCheckboxMenu multiple="false" filter="true"
+										value="#{vis.strLstValue}" filterMatchMode="contains">
+										<f:selectItems
+											value="#{vis.executedQuery(pseudoDashboard.inputFieldModel.fields)}" />
+										<p:ajax event="change" update="@form" />
+									</p:selectCheckboxMenu>
+								</p:column>
+
+							</p:dataTable>
+							<ui:debug rendered="true"/>
+							<p:outputLabel rendered="false"
+								value="#{pseudoDashboard.inputFieldModel.executedQuery(pseudoDashboard.inputFieldModel.fields)}" />
+			
+							<p:messages id="messages" showDetail="true">
+								<p:autoUpdate />
+							</p:messages>
+					</div>
+				</div>
+
+				<br />
+
+				<div class="row">
+					<div class="col-md-12">
+						<p:commandButton id="subBtn" value="Submit" process="@form" update=":frm2" disabled="#{pseudoDashboard.inputFieldModel.showSubmit}"
+							actionListener="#{pseudoDashboard.view}" onclick="startLoading();setDeviceWidth();closeNav();"/>
+							
+														
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</div>
+	
+	
+	
+	<div class="container-fluid">
+		<h:form id="frm2">
+		<p:outputLabel id="label" value="Fill the selection panel to view Report" rendered="#{!pseudoDashboard.showData}" disabled="true" style="color:grey !important;"></p:outputLabel>
+		<h:commandLink rendered="false" value="Export All" actionListener="#{excelDownload.exportToExcel(pseudoDashboard.riModels,pseudoDashboard.frame)}" immediate="true"/>
+		<p:inputText value="#{pseudoDashboard.serColors}" rendered="false" >
+			<p:ajax event="blur" listener="#{pseudoDashboard.changeColor}"  update="frm2"></p:ajax>
+		</p:inputText>
+		<p:graphicImage rendered="false" value="images/ajaxLoading.gif" id="loadImg1" style="visibility:hidden;height: 0rem; width: 0rem; margin-right: 0.5rem;"></p:graphicImage>
+		<div id="loadImg" style="visibility:hidden;"  class="loader">
+  <div class="inner one"></div>
+  <div class="inner two"></div>
+  <div class="inner three"></div>
+</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 p-1" style="overflow: auto !important;">
+	
+					<p:panelGrid  rendered="#{pseudoDashboard.showData}">
+						<c:forEach var="row1" items="#{pseudoDashboard.frame.rows}">
+							<p:row>
+								<c:forEach var="cell" items="#{row1.cells}">
+									<p:column colspan="#{cell.colSpan}" rowspan="#{cell.rowSpan}">
+									
+										<p:dashboard model="#{cell.dm}" disabled="true">
+							
+											<c:forEach var="rim" items="#{pseudoDashboard.riModels}">
+											
+											<c:forEach var="subT" items="#{rim.subtTableNames}">
+													<p:panel id="#{cell.cellId.concat(subT)}" header="#{rim.subTableInfos.get(0).tableName}">
+														<p:carousel var="resIndex" value="#{rim.resultIndex}" 
+															numVisible="3" pageLinks="3" style="width:#{(pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan}px;margin:10px 0px;" 
+															columnClasses="label,value">
+
+															<p:dataGrid var="subTable" value="#{rim.subTableInfos}"
+																columns="1" layout="grid" emptyMessage="">
+																<p:dataTable value="#{subTable.infoList}" var="inf"		styleClass="noHeader">
+																	<p:column colspan="2" rendered="#{inf.showInKnob}"
+																		style="vertical-align: middle; text-align: center"
+																		headerText="">
+																		<p:knob
+																			foregroundColor="#{rim.findSubTableDataForKnob(inf.nodeName,resIndex) ge 70.0 ? 'rgb(87, 202, 133)': rim.findSubTableDataForKnob(inf.nodeName,resIndex) ge 50.0 ?'rgb(247, 107, 28)':'rgb(161, 5, 29)'}"
+																			backgroundColor="#00000"
+																			value="#{rim.resultList.get(resIndex).resultData[inf.nodeName.toLowerCase()]}"
+																			labelTemplate="{value} - #{inf.nodeAliasName}"
+																			disabled="true" thickness=".10" height="120"
+																			width="120" max="100" min="0"
+																			rendered="#{inf.showInKnob and rim.resultList.size() gt 0}" />
+																	</p:column>
+																	<p:column rendered="#{not inf.showInKnob}"
+																		style="vertical-align: middle; text-align: center"
+																		>
+																		<p:outputLabel value="#{inf.nodeAliasName} :" />
+																	</p:column>
+																	<p:column rendered="#{not inf.showInKnob}"
+																		style="vertical-align: middle; text-align: center"
+																		>
+																		<h:outputText
+																			value="#{rim.findSubTableData(inf.nodeName,resIndex)}"
+																			rendered="#{not inf.nodeAliasName}" />
+																	</p:column>
+																</p:dataTable>
+																
+										<ui:fragment>
+											<div class="card card-height-1">
+												<div class="card-header card-header-height"
+													style="background: ##{rim.finSubtableHeaderColor(subTable,resIndex)}">
+													<h3 class="text-center">
+														<h:outputText value="#{rim.findSubTableData(subTable.infoList.get(0).nodeName,resIndex)}"/>
+													
+													</h3>
+												</div>
+												<div class="card-body">
+													<p:panelGrid columns="3">
+
+														<c:forEach items="#{subTable.infoList}" var="inf">
+															<ui:fragment rendered="#{inf.nodeName ne subTable.infoList.get(0).nodeName}">
+																<i class="#{inf.faIcon}" style="font-size: 2rem !important;"/>
+															</ui:fragment>
+															<p:outputLabel value="#{inf.nodeAliasName}" rendered="#{inf.nodeName ne subTable.infoList.get(0).nodeName}"/>
+															<h:outputText
+																value="#{rim.findSubTableData(inf.nodeName,resIndex)}" rendered="#{inf.nodeName ne subTable.infoList.get(0).nodeName}" />
+														</c:forEach>
+													</p:panelGrid>
+												</div>
+											</div>
+										</ui:fragment>
+									
+															</p:dataGrid>
+														</p:carousel>
+													</p:panel>
+												</c:forEach>
+											
+											
+												<p:panel id="#{cell.cellId.concat('Table_'.concat(rim.modelInfo.modelID))}">
+													<p:scrollPanel mode="native" style="width:#{(pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan}px;">
+													<p:dataTable value="#{rim.resultList}" id="#{cell.cellId.concat('Table'.concat(rim.modelInfo.modelID))}" var="datarow"
+														paginator="true" paginatorPosition="bottom" rows="5"
+														rowsPerPageTemplate="5,10,20,50" widgetVar="#{cell.cellId.concat('Table'.concat(rim.modelInfo.modelID))}"
+														rendered="#{rim.modelInfo.showdatatable}"
+														paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" styleClass="myDatatable">
+														<f:facet name="header">
+															<p:selectCheckboxMenu value="#{rim.selectedToggleCol}"
+																label="Select Columns" rendered="#{rim.showColToggler}" style="float: left !important;">
+																<f:selectItems value="#{rim.toggleColList}" />
+																<p:ajax event="change" listener="#{rim.onToggleCol}"
+																	update=":frm2" />
+																<p:ajax event="toggleSelect" listener="#{rim.onToggleCol}"
+																	update=":frm2" />
+															</p:selectCheckboxMenu>
+																<p:commandButton value="Action" partialSubmit="false"
+																	process="@form" actionListener="#{rim.selectionAction}"
+																	rendered="#{rim.showInsightInTable}">
+																	<f:attribute name="modelId"
+																		value="#{rim.modelInfo.modelID}" />
+																	<f:attribute name="ifm"
+																		value="#{mrpb5.inputFieldModel}" />
+																	<f:attribute name="dataTab" value="#{rim.resultList}" />
+																</p:commandButton>
+																<div style="float: right;">
+																	<p:tooltip id="toolTipFocus" for="img"
+																		value="Export to Excel" />
+																	<h:commandLink id="lnk" immediate="true"
+																		actionListener="#{pseudoDashboard.setFileName(rim.modelInfo.modelName)}">
+																		<p:graphicImage id="img" value="images/excel.png"
+																			width="20" style="padding-top: 5px !important;" />
+																		<p:dataExporter type="xls"
+																			target="#{cell.cellId.concat('Table'.concat(rim.modelInfo.modelID))}"
+																			fileName="#{rim.trBnSupp.rowColumn[0].cols[0].aliasName}"
+																			postProcessor="#{pseudoDashboard.postProcessXLS}" />
+																	</h:commandLink>
+																</div>
+															</f:facet>
+														<p:columnGroup type="header">
+															<p:column headerText="Insight"
+																rowspan="#{rim.trBnSupp.maxLevel+1}"
+																exportable="false" rendered="true">
+															</p:column>
+															<ui:repeat var="row" value="#{rim.trBnSupp.rowColumn}">
+																<p:row>
+																	<ui:repeat var="col" value="#{row.cols}">
+																		<p:column headerText="#{col.aliasName}"
+																			colspan="#{col.colSpan}" rowspan="#{col.rowSpan}" groupRow="true"></p:column>
+																	</ui:repeat>
+																</p:row>
+															</ui:repeat>
+														</p:columnGroup>
+														
+															<p:column style="width:80px;text-align:center"
+																rendered="true">
+																<p:selectBooleanCheckbox value="#{datarow.boxSelected}"
+																	disabled="#{!rim.showInsightInTable}"
+																	valueChangeListener="#{rim.onBoxSelection}">
+																	<f:ajax event="change" execute="@this" render="tbl"></f:ajax>
+
+																</p:selectBooleanCheckbox>
+															</p:column>
+															<p:columns value="#{rim.dbColHeads}" var="key" groupRow="true"
+															style="text-align:center">
+															<h:outputText id="cl" value="#{datarow.getResultDataByKey(key)}" 
+															style="color:##{rim.getAccColor(key,datarow.getResultDataByKey(key),datarow.resultData)};"/>
+														</p:columns>
+													</p:dataTable>
+													 </p:scrollPanel>
+												</p:panel>
+
+												<p:panel id="#{cell.cellId.concat(rim.timelineId)}">
+												<p:scrollPanel mode="native" style="width:#{(pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan}px;">
+													<p:timeline id="timeline" value="#{rim.tmModel}"
+														eventMargin="10" eventMarginAxis="0" 
+														showNavigation="false"
+													
+														showButtonNew="true" axisOnTop="true" stackEvents="false"
+														zoomMin="12000"/>
+														</p:scrollPanel>
+												</p:panel>
+												<c:forEach var="uiChart" items="#{rim.idList}">
+													<p:panel id="#{cell.cellId.concat(uiChart)}">
+														 <p:scrollPanel mode="native" style="width:#{(pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan}px;">
+														
+														
+														<p:carousel var="chVal" rendered="#{rim.titleChartListMap[uiChart].size() gt 1}"
+															value="#{rim.titleChartListMap[uiChart]}" responsive="true"
+															numVisible="2" style="width:#{(pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan}px;margin:10px 0px;" 
+															columnClasses="label,value">
+															<p:chart type="#{chVal.chartType}"	style="height:300px;width:#{rim.titleChartListMap[uiChart].size() gt 1 ?((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan/2) : ((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan)}px;"	model="#{chVal.chartType eq 'pie' ? chVal.pieModel : chVal.chartModel}"
+																responsive="true"  rendered="#{!chVal.chartClickable}">
+																
+															</p:chart>
+															
+															<p:remoteCommand actionListener="#{rim.showChartDialog(pseudoDashboard.inputFieldModel)}"
+																	name="chDlg" update="@form" />
+															<p:chart type="#{chVal.chartType}"	style="height:300px;width:#{rim.titleChartListMap[uiChart].size() gt 1 ?((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan/2) : ((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan)}px;"	model="#{chVal.chartType eq 'pie' ? chVal.pieModel : chVal.chartModel}"
+																responsive="true"  rendered="#{chVal.chartClickable}">
+															<p:ajax event="itemSelect" listener="#{rim.onChartClick}"
+																	oncomplete="chDlg()" />
+															</p:chart>
+														</p:carousel>
+														
+														<p:dataGrid var="chVal" rendered="#{rim.titleChartListMap[uiChart].size() le 1}"
+															value="#{rim.titleChartListMap[uiChart]}" responsive="true"
+															columns="2" style="width:#{(pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan}px;margin:10px 0px;" 
+															columnClasses="label,value">
+															<p:chart type="#{chVal.chartType}"	style="height:300px;width:#{rim.titleChartListMap[uiChart].size() gt 1 ?((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan/2) : ((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan)-12}px;"	model="#{chVal.chartType eq 'pie' ? chVal.pieModel : chVal.chartModel}"
+																responsive="true"  rendered="#{!chVal.chartClickable}">
+																
+															</p:chart>
+															
+															<p:remoteCommand actionListener="#{rim.showChartDialog(pseudoDashboard.inputFieldModel)}"
+																	name="chDlg" update="@form" />
+															<p:chart type="#{chVal.chartType}"	style="height:300px;width:#{rim.titleChartListMap[uiChart].size() gt 1 ?((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan/2) : ((pseudoDashboard.viewPortSize/pseudoDashboard.maxCol)*cell.colSpan)-12}px;"	model="#{chVal.chartType eq 'pie' ? chVal.pieModel : chVal.chartModel}"
+																responsive="true"  rendered="#{chVal.chartClickable}">
+															<p:ajax event="itemSelect" listener="#{rim.onChartClick}"
+																	oncomplete="chDlg()" />
+															</p:chart>
+														</p:dataGrid>
+														</p:scrollPanel>
+													</p:panel>
+												</c:forEach>
+											</c:forEach>
+
+										</p:dashboard>
+										<div style="clear: both" />
+									</p:column>
+								</c:forEach>
+							</p:row>
+						</c:forEach>
+					</p:panelGrid>
+				</div>
+			</div>
+			
+		</h:form>
+	</div>
+	
+	
+	<script>
+
+		var deviceWidth = $(window).width();
+
+		function startLoading(){
+			document.getElementById('frm1:subBtn').style.visibility = "hidden";
+			document.getElementById('loadImg').style.visibility = "visible";
+			document.getElementById('frm2:label').style.visibility = "hidden";
+			
+			}
+		
+		function setDeviceWidth(){
+			/* alert(deviceWidth); */
+			document.getElementById('frm1:hidden2').value = deviceWidth-20;}
+
+		function toggleSearchBar() {
+		 
+		  if(document.getElementById("mySidebar").style.width != "26rem"){
+			  document.getElementById("mySidebar").style.width = "26rem";
+			  document.getElementById("mySidebar").style.height = "26rem";
+			  document.getElementById("main").style.marginLeft = "26rem";
+			  /* document.getElementById("mySidebar").style.border = "border: 1px solid #57ca85 !important"; */
+		  }
+		  else {
+			  document.getElementById("mySidebar").style.width = "0";
+			  document.getElementById("main").style.marginLeft= "0";
+			  /* document.getElementById("mySidebar").style.border = "none"; */
+		  }
+		  
+		}
+		
+		function closeNav() {
+		  document.getElementById("mySidebar").style.width = "0";
+		  document.getElementById("main").style.marginLeft= "0";
+		}
+		
+		function pieExtender() {
+			//alert("ding");
+			this.cfg.grid = {
+				background : '#ffffff', //Set background to white
+				drawGridLines : false,
+				background : 'transparent', // CSS color spec for background color of grid.
+				borderColor : 'transparent', // CSS color spec for border around grid.
+				borderWidth : 0.0, // pixel width of border around grid.
+				shadow : false
+			// draw a shadow for grid.
+			};
+		
+		}
+		
+		function chartExtender() {
+			//alert("ding");
+			this.cfg.grid = {
+				background : 'transparent', //Set background to white
+				borderColor : 'transparent',
+				shadow : false,
+				drawGridLines:false,
+			};
+			this.cfg.axes.xaxis.tickOptions.showGridline = false;
+			this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+		    
+		    
+		    this.cfg.axes.xaxis.tickOptions.textColor= '#8c8989';
+		    this.cfg.axes.yaxis.tickOptions.fontSize= '10pt';
+		    this.cfg.axes.xaxis.tickOptions.fontFamily= 'Georgia';
+				this.cfg.axes.xaxis.labelOptions={
+				 		textColor: '#8c8989'
+				};
+		
+				this.cfg.axes.yaxis.tickOptions.showGridline = false;
+				this.cfg.axes.yaxis.tickOptions.textColor= '#8c8989';
+		    this.cfg.axes.yaxis.tickOptions.fontSize= '10pt';
+		    this.cfg.axes.yaxis.tickOptions.fontFamily= 'Georgia';
+				this.cfg.axes.yaxis.labelOptions={
+				 		textColor: '#8c8989'
+				};
+		
+				if (typeof this.cfg.axes.y2axis !== 'undefined')
+		 	{
+					this.cfg.axes.y2axis.tickOptions.showGridline = false;
+		 		this.cfg.axes.y2axis.tickOptions.textColor= '#8c8989';
+		        this.cfg.axes.y2axis.tickOptions.fontSize= '10pt';
+		        this.cfg.axes.y2axis.tickOptions.fontFamily= 'Georgia',
+		 		this.cfg.axes.y2axis.labelOptions={
+		 		 		textColor: '#8c8989'
+		 		};
+		 	}
+				if (typeof this.cfg.axes.y3axis !== 'undefined')
+		 	{
+					this.cfg.axes.y3axis.tickOptions.showGridline = false;
+					this.cfg.axes.y3axis.tickOptions.textColor= '#8c8989';
+		        this.cfg.axes.y3axis.tickOptions.fontSize= '10pt';
+		        this.cfg.axes.y3axis.tickOptions.fontFamily= 'Georgia',
+		 		this.cfg.axes.y3axis.labelOptions={
+		 		 		textColor: '#8c8989'
+		 		};
+		
+		 	}
+		
+				if (typeof this.cfg.axes.y4axis !== 'undefined')
+		 	{
+					this.cfg.axes.y4axis.tickOptions.showGridline = false;
+		 		this.cfg.axes.y4axis.tickOptions.textColor= '#8c8989';
+		        this.cfg.axes.y4axis.tickOptions.fontSize= '10pt';
+		        this.cfg.axes.y4axis.tickOptions.fontFamily= 'Georgia',
+		 		this.cfg.axes.y4axis.labelOptions={
+		 		 		textColor: '#8c8989'
+		 		};
+		 	}
+		
+				if (typeof this.cfg.axes.y5axis !== 'undefined')
+		 	{
+					this.cfg.axes.y5axis.tickOptions.showGridline = false;
+		 		this.cfg.axes.y5axis.tickOptions.textColor= '#8c8989';
+		        this.cfg.axes.y5axis.tickOptions.fontSize= '10pt';
+		        this.cfg.axes.y5axis.tickOptions.fontFamily= 'Georgia',
+		 		this.cfg.axes.y5axis.labelOptions={
+		 		 		textColor: '#8c8989'
+		 		};
+		 	}
+		}
+	</script>
+</h:body>
+</html>

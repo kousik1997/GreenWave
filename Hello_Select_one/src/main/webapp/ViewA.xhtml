@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+
+</h:head>
+<h:body>
+	<h:form>	
+		<h:outputLabel value="Student Name"></h:outputLabel>
+		<h:inputText value="#{studentBean.studentName}"></h:inputText>
+		<br></br>
+		<h:outputLabel value="Student Roll"></h:outputLabel>
+		<h:inputText value="#{studentBean.studentRoll}"></h:inputText>
+		<br></br>
+		
+		<br></br>
+		<h:outputLabel value="Creating List from ArrayList"></h:outputLabel>
+		<br></br>
+		<h:selectOneMenu value="#{studentBean.rollNoFromArrayList}" >
+			<f:selectItems value="#{studentBean.studentList}" var="std" itemLabel="#{std.name}" itemValue="#{std.roll}">				
+			</f:selectItems>
+		</h:selectOneMenu>
+		<br></br>
+		<h:outputLabel value="Creating List from Map"></h:outputLabel>
+		<br></br>
+		<h:selectOneMenu value="#{studentBean.rollNoFromMap}" >
+			<f:selectItems value="#{studentBean.studentMap}">				
+			</f:selectItems>
+		</h:selectOneMenu>
+		<br></br>
+		<h:outputLabel value="Creating List from Array"></h:outputLabel>
+		<br></br>
+		<h:selectOneMenu value="#{studentBean.rollNoFromArray}" >
+			<f:selectItems value="#{studentBean.stdentDetails}" >				
+			</f:selectItems>
+		</h:selectOneMenu>
+		<br></br>
+		<h:commandButton value="Save" action="#{studentBean.submit()}"></h:commandButton>
+		
+	</h:form>
+</h:body>
+</html>
