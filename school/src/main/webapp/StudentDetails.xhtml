@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+
+</h:head>
+
+<h:body>
+
+ <h3>Select Student Name And enter roll</h3>
+ <h:form>	
+	Roll : <h:inputText value="#{student.roll}"></h:inputText><br/>
+	Name : <h:selectOneMenu value="#{student.name}">
+				<f:selectItems values="#{student.init()}"></f:selectItems>
+	
+	   	   </h:selectOneMenu><br/>
+	   	   <h:commandButton value="submit" action="index.xhtml"></h:commandButton>
+	   	    </h:form>
+	   	   
+</h:body>
+</html>
