@@ -52,6 +52,6 @@ public class StudentCustomConverter implements  Converter {
 	@Override
 	public String getAsString(FacesContext facesContext, UIComponent component, Object value) {
 		// TODO Auto-generated method stub
-		return null;
+		return value.toString();
 	}
 }

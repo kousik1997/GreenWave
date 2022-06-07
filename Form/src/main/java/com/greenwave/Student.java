@@ -5,6 +5,8 @@ public class Student {
 	private String gender;
 	private int cls;
 	private int roll;
+	boolean editable;
+
 	
 	public Student(String name,String gender,int cls,int roll) {
 		this.name=name;
@@ -12,6 +14,8 @@ public class Student {
 		this.cls=cls;
 		this.roll=roll;
 	}
+	 
+	
 	public String getName() {
 		return name;
 	}
@@ -35,6 +39,14 @@ public class Student {
 	}
 	public void setRoll(int roll) {
 		this.roll = roll;
+	}
+	
+
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 	@Override
 	public String toString() {
