@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+</h:head>
+<h:body>
+	<h2>Enter your details</h2>
+	<h:form id="frm1">
+
+		<h:outputLabel value="Name : " />
+		<h:inputText id="name" value="#{studentBean.name}">
+		</h:inputText>
+		<br></br>
+
+		<h:outputLabel value="Gender : " />
+		<h:selectOneRadio id="gender" value="#{studentBean.gender}">
+			
+			<f:selectItem itemLabel="Male" itemValue="male"></f:selectItem>
+			<f:selectItem itemLabel="Female" itemValue="female"></f:selectItem>
+		</h:selectOneRadio>
+
+		<h:outputLabel value="Address : "></h:outputLabel>
+		<h:inputText id="address" value="#{studentBean.address}">
+			</h:inputText>
+			<br></br>
+
+		<h:commandButton value="Submit" action="#{studentBean.submit}"></h:commandButton>
+		 <h:commandButton value="update" action="#{studentBean.update}" ></h:commandButton>
+		<h:commandButton value="View" action="#{studentBean.view}"></h:commandButton>
+
+	</h:form>
+	
+	<h:form>
+		<center><h3><U>Student Details</U></h3>
+			<h:dataTable id="EntityTable" value="#{studentBean.studentList}" border="1" var="st" cellspacing="1" cellpadding="1">
+
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{st.id}"/>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{st.name}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Gender</f:facet>
+					<h:outputText value="#{st.gender}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Address</f:facet>
+					<h:outputText value="#{st.address}"/>
+				</h:column>
+				<h:column>
+					<h:commandButton value="Select"
+						actionListener="#{studentBean.show}" onclick="submit()">
+						<f:ajax event="click" execute="@this" render=":frm1"/>
+						<f:attribute name="kou" value="#{st}"></f:attribute>
+
+					</h:commandButton>
+
+				</h:column>
+					<h:column>
+					<h:commandButton value="Delete"
+						actionListener="#{studentBean.delete}" onclick="submit()">
+						<f:ajax event="click" execute="@this" render=":frm1"/>
+						<f:attribute name="kous" value="#{st}"></f:attribute>
+
+					</h:commandButton>
+
+				</h:column>
+
+			</h:dataTable>
+		</center>
+	</h:form>
+	
+	
+</h:body>
+</html>
