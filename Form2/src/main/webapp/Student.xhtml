@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Student Information</title>
+
+</h:head>
+<h:body>
+
+	<h:form id="frm1">
+		<h:outputLabel value="Student Name : " />
+		<h:inputText id="name" value="#{studentBean.name}" t:placeholder="Enter Your Name" >
+	
+		</h:inputText>
+		<br></br>
+		<br></br>
+
+		<h:outputLabel value="Class : " />
+		<h:inputText id="cls" value="#{studentBean.cls}" t:placeholder="Enter Your Class" >
+		</h:inputText>
+		<br></br>
+		<br></br>
+
+		<h:outputLabel value="Roll : " />
+		<h:inputText id="roll" value="#{studentBean.roll}" t:placeholder="Enter Your Roll">
+		</h:inputText>
+		<br></br>
+		<br></br>
+
+		<h:outputLabel value="Address : " />
+		<h:inputText id="add" value="#{studentBean.address}" t:placeholder="Enter Your Address">
+		</h:inputText>
+		<br></br>
+		<br></br>
+
+		<h:commandButton value="Submit" action="#{studentBean.submit}"></h:commandButton>
+	
+
+	
+		
+
+			<h:commandButton value="Add Marks" action="#{studentBean.onMarksAdd}"></h:commandButton>
+			<h:dataTable var="m" value="#{studentBean.markList}">
+				<h:column rowHeader="Subject">
+					<h:inputText value="#{m.subject}" t:placeholder="Enter Your Subject"/>
+				</h:column>
+				<h:column rowHeader="Marks">
+					<h:inputText value="#{m.marks}" t:placeholder="Enter Your Marks"/>
+				</h:column>
+			</h:dataTable>
+
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+
+
+
+
+	</h:form>
+
+	<h:form>
+		<center>
+			<h:dataTable id="myEntityTable" value="#{studentBean.studentList}"
+				border="1" var="stu" cellspacing="1" cellpadding="1"
+				rowIndexVar="rowIndex">
+
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{stu.name}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Class</f:facet>
+					<h:outputText value="#{stu.cls}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Roll</f:facet>
+					<h:outputText value="#{stu.roll}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Address</f:facet>
+					<h:outputText value="#{stu.address}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Marks</f:facet>
+					<h:form>
+						<h:dataTable id="myEntityTable1" value="#{stu.markList}"
+							border="0" var="stu1" cellspacing="1" cellpadding="1"
+							rowIndexVar="rowIndex">
+
+
+
+							<h:column>
+
+								<f:facet name="header">subject</f:facet>
+								<h:outputText value="#{stu1.subject}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">Marks</f:facet>
+								<h:outputText value="#{stu1.marks}" />
+							</h:column>
+
+						</h:dataTable>
+					</h:form>
+				</h:column>
+
+			</h:dataTable>
+		</center>
+	</h:form>
+
+</h:body>
+</html>
