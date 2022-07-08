@@ -20,65 +20,107 @@ public class StudentBean  {
 	private int roll;
 	private String address;
 	
+	private int index;
+
 	private String subject;
 	private int marks;
-	//private Student st;
-	//int id;
 	
-	
-	
-	
+	private Student student;
+
+
 	private List<Student> studentList = new ArrayList<Student>();
 	private List<Submarks> markList = new ArrayList<Submarks>();
-	
-	 
-	 
-	
+
+
+
+
 	public void add() {
-		//Student stu = (Student)event.getComponent().getAttributes().get("kou");
-	
+
 		Student tempStudent = new Student(name,cls,roll,address);
 		studentList.add(tempStudent);
-		
-		
-	
-		//System.out.println("kk");
-		//id=studentList.indexOf(tempStudent);
-		//markList.clear();
-		//st=tempStudent;
-		//markList.add(tempStudent.new Submarks(subject,marks));
-		//tempStudent.markList.add(subject,marks);
-		
+
 	}
 	public String onMarksAdd() {
-		System.out.println("StudentBean.onMarksAdd()");
+		//System.out.println("StudentBean.onMarksAdd()");
 		markList.add(new Submarks(subject, marks));
 		return null;
 	}
-	
+
 
 	public String submit() {
-		//Student.Submarks tempsubmarks = st.new Submarks(subject,marks);
-		//markList.add(st.new Submarks(subject,marks));
-	
-		//markList.add(tempsubmarks);
-		
-		//inner.add(tempsubmarks); 
-		
-		//outer.add(inner);
+
 		Student stu = new Student(name, cls, roll, address);
 		stu.getMarkList().addAll(markList);
 		studentList.add(stu);
 		markList.clear();
 		return null;
+
 	}
 	
+	public void view(ActionEvent event) {
+		
+		Student stu1 = (Student)event.getComponent().getAttributes().get("kou");
+		
+		student = stu1;
+		
+		/*
+
+		System.out.println("Index is :"+studentList.indexOf(stu1));
+		System.out.println(stu1.getName());
+		System.out.println(stu1.getCls());
+		System.out.println(stu1.getRoll());
+		System.out.println(stu1.getAddress());
+		
+		*/
+		
+		index=studentList.indexOf(stu1);
+		
+		
+		name=stu1.getName();
+		cls=stu1.getCls();
+		roll=stu1.getRoll();
+		address=stu1.getAddress();
+		
+		markList=stu1.getMarkList();
+
+		
+	}
+	
+	public String update() { 
+		try {
+		Student stu2 = new Student(name, cls, roll, address);
+		stu2.getMarkList().addAll(markList);
+		studentList.set(index,stu2);
+		markList.clear();
+		
+		}catch (Exception e) {
+			System.out.println(e);
+			
+		}
+		return null;
+
+	}
+	
+	public void delete(ActionEvent event) {
+		Student stu3 = (Student)event.getComponent().getAttributes().get("kou");
+		student = stu3;
+		/*
+		System.out.println("Index is :"+studentList.indexOf(stu3));
+		System.out.println(stu3.getName());
+		System.out.println(stu3.getCls());
+		System.out.println(stu3.getRoll());
+		System.out.println(stu3.getAddress());
+		*/
+		index=studentList.indexOf(stu3);
+		
+		studentList.remove(index);
+		
+	}
+
 
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -90,8 +132,6 @@ public class StudentBean  {
 		return cls;
 	}
 
-
-
 	public void setCls(int cls) {
 		this.cls = cls;
 	}
@@ -102,18 +142,15 @@ public class StudentBean  {
 		return roll;
 	}
 
-
-
 	public void setRoll(int roll) {
 		this.roll = roll;
 	}
 
 
+
 	public List<Student> getStudentList() {
 		return studentList;
 	}
-
-
 
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
@@ -125,8 +162,6 @@ public class StudentBean  {
 		return address;
 	}
 
-
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -136,8 +171,6 @@ public class StudentBean  {
 	public List<Submarks> getMarkList() {
 		return markList;
 	}
-
-
 
 	public void setMarkList(List<Submarks> markList) {
 		this.markList = markList;
@@ -149,8 +182,6 @@ public class StudentBean  {
 		return subject;
 	}
 
-
-
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
@@ -161,16 +192,9 @@ public class StudentBean  {
 		return marks;
 	}
 
-
-
 	public void setMarks(int marks) {
 		this.marks = marks;
 	}
-
-
-	
-
-
 
 
 

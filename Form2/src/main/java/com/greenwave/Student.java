@@ -19,9 +19,9 @@ public class Student {
 		this.address=address;
 		this.markList = new ArrayList<Submarks>();
 	}
-	
+
 	public static class Submarks {
-		
+
 
 		private String subject;
 		private int marks;
@@ -43,9 +43,9 @@ public class Student {
 		public void setMarks(int marks) {
 			this.marks = marks;
 		}
-}
+	}
 
-	
+
 	public String getName() {
 		return name;
 	}

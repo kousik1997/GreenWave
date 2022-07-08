@@ -8,57 +8,120 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Student Information</title>
+	<style>
+	.buttonadd {
+  background-color:#228B22; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.buttonsub {
+  background-color: #0000CD; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.buttonsel {
+  background-color: #2E8B57; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.buttondel {
+  background-color: #B22222; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+		</style>
+	
 
 </h:head>
 <h:body>
-
+<h2 style="color:green;">Enter Student Details</h2>
 	<h:form id="frm1">
 		<h:outputLabel value="Student Name : " />
-		<h:inputText id="name" value="#{studentBean.name}" t:placeholder="Enter Your Name" >
-	
+		<h:inputText id="name" value="#{studentBean.name}"
+			t:placeholder="Enter Your Name">
+
 		</h:inputText>
 		<br></br>
 		<br></br>
 
 		<h:outputLabel value="Class : " />
-		<h:inputText id="cls" value="#{studentBean.cls}" t:placeholder="Enter Your Class" >
+		<h:inputText id="cls" value="#{studentBean.cls}"
+			t:placeholder="Enter Your Class">
 		</h:inputText>
 		<br></br>
 		<br></br>
 
 		<h:outputLabel value="Roll : " />
-		<h:inputText id="roll" value="#{studentBean.roll}" t:placeholder="Enter Your Roll">
+		<h:inputText id="roll" value="#{studentBean.roll}"
+			t:placeholder="Enter Your Roll">
 		</h:inputText>
 		<br></br>
 		<br></br>
 
 		<h:outputLabel value="Address : " />
-		<h:inputText id="add" value="#{studentBean.address}" t:placeholder="Enter Your Address">
+		<h:inputText id="add" value="#{studentBean.address}"
+			t:placeholder="Enter Your Address">
 		</h:inputText>
 		<br></br>
 		<br></br>
 
-		<h:commandButton value="Submit" action="#{studentBean.submit}"></h:commandButton>
-	
 
-	
-		
 
-			<h:commandButton value="Add Marks" action="#{studentBean.onMarksAdd}"></h:commandButton>
-			<h:dataTable var="m" value="#{studentBean.markList}">
-				<h:column rowHeader="Subject">
-					<h:inputText value="#{m.subject}" t:placeholder="Enter Your Subject"/>
-				</h:column>
-				<h:column rowHeader="Marks">
-					<h:inputText value="#{m.marks}" t:placeholder="Enter Your Marks"/>
-				</h:column>
-			</h:dataTable>
+		<h:commandButton value="Add Marks" action="#{studentBean.onMarksAdd}" class="buttonadd">
+		</h:commandButton>
+		<br></br>
 
-			<br></br>
-			<br></br>
-			<br></br>
-			<br></br>
+		<h:dataTable var="m" value="#{studentBean.markList}">
+			<h:column rowHeader="Subject">
 
+				<h:inputText value="#{m.subject}" t:placeholder="Enter Your Subject" />
+			</h:column>
+
+			<h:column rowHeader="Marks">
+				<h:inputText value="#{m.marks}" t:placeholder="Enter Your Marks" />
+			</h:column>
+
+
+
+		</h:dataTable>
+		<br></br>
+		<h:commandButton value="Submit" action="#{studentBean.submit}" class="buttonsub">
+		</h:commandButton>
+		<h:commandButton value="update" action="#{studentBean.update}" class="buttonsub">
+		</h:commandButton>
 
 
 
@@ -66,8 +129,11 @@
 
 	<h:form>
 		<center>
+		<h2 style="color:green;">
+				<U>Student Marks Details </U>
+				</h2>
 			<h:dataTable id="myEntityTable" value="#{studentBean.studentList}"
-				border="1" var="stu" cellspacing="1" cellpadding="1"
+				border="1" var="stu" cellspacing="1" cellpadding="3"
 				rowIndexVar="rowIndex">
 
 				<h:column>
@@ -91,27 +157,43 @@
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Marks</f:facet>
-					<h:form>
-						<h:dataTable id="myEntityTable1" value="#{stu.markList}"
-							border="0" var="stu1" cellspacing="1" cellpadding="1"
-							rowIndexVar="rowIndex">
+					<f:facet name="header"><h3>Marks</h3></f:facet>
 
+					<h:dataTable id="myEntityTable1" value="#{stu.markList}" border="0"
+						var="stu1" cellspacing="1" cellpadding="2" rowIndexVar="rowIndex">
 
+						<h:column>
 
-							<h:column>
+							<f:facet name="header">subject</f:facet>
+							<h:outputText value="#{stu1.subject}" />
+						</h:column>
 
-								<f:facet name="header">subject</f:facet>
-								<h:outputText value="#{stu1.subject}" />
-							</h:column>
+						<h:column>
+							<f:facet name="header">Marks</f:facet>
+							<h:outputText value="#{stu1.marks}" />
+						</h:column>
 
-							<h:column>
-								<f:facet name="header">Marks</f:facet>
-								<h:outputText value="#{stu1.marks}" />
-							</h:column>
+					</h:dataTable>
 
-						</h:dataTable>
-					</h:form>
+				</h:column>
+				<h:column>
+					
+					<h:commandButton value="Select"
+						actionListener="#{studentBean.view}" onclick="submit()" class="buttonsel">
+						<f:ajax event="click" execute="@this" render=":frm1" />
+						<f:attribute name="kou" value="#{stu}"></f:attribute>
+
+					</h:commandButton>
+				</h:column>
+				
+				<h:column>
+					
+					<h:commandButton value="Delete"
+						actionListener="#{studentBean.delete}" onclick="submit()" class="buttondel">
+						<f:ajax event="click" execute="@this" render=":frm1" />
+						<f:attribute name="kou" value="#{stu}"></f:attribute>
+
+					</h:commandButton>
 				</h:column>
 
 			</h:dataTable>
