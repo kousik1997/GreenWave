@@ -7,9 +7,64 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+<style>
+.buttonsub {
+  background-color: #0000CD; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.buttondel {
+  background-color: #B22222; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.buttonsel {
+  background-color: #2E8B57; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.buttonref {
+  background-color:#6A5ACD; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+</style>
+
 </h:head>
 <h:body>
-	<h2>Enter your details</h2>
+	<h2 style="color:green;">Enter your details</h2>
 	<h:form id="frm1">
 
 		<h:outputLabel value="Name : " />
@@ -19,68 +74,68 @@
 
 		<h:outputLabel value="Gender : " />
 		<h:selectOneRadio id="gender" value="#{studentBean.gender}">
-			
+
 			<f:selectItem itemLabel="Male" itemValue="male"></f:selectItem>
 			<f:selectItem itemLabel="Female" itemValue="female"></f:selectItem>
 		</h:selectOneRadio>
 
 		<h:outputLabel value="Address : "></h:outputLabel>
 		<h:inputText id="address" value="#{studentBean.address}">
-			</h:inputText>
-			<br></br>
+		</h:inputText>
+		<br></br>
 
-		<h:commandButton value="Submit" action="#{studentBean.submit}"></h:commandButton>
-		 <h:commandButton value="update" action="#{studentBean.update}" ></h:commandButton>
-		<h:commandButton value="View" action="#{studentBean.view}"></h:commandButton>
+		<h:commandButton value="Submit" action="#{studentBean.submit}" class="buttonsub"></h:commandButton>
+		<h:commandButton value="Update" action="#{studentBean.update}" class="buttonsub" ></h:commandButton>
+		
+
 
 	</h:form>
-	
+
 	<h:form>
-		<center><h3><U>Student Details</U></h3>
-			<h:dataTable id="EntityTable" value="#{studentBean.studentList}" border="1" var="st" cellspacing="1" cellpadding="1">
+		<center>
+			<h2 style="color:green;">
+				<U>Student Details </U>
+				<h:commandButton value="Refresh" action="#{studentBean.view}" class="buttonref"></h:commandButton>
+			</h2>
+
+			<h:dataTable id="EntityTable" value="#{studentBean.studentList}"
+				border="0" var="st" cellspacing="3" cellpadding="4">
 
 				<h:column>
 					<f:facet name="header">ID</f:facet>
-					<h:outputText value="#{st.id}"/>
+					<h:outputText value="#{st.id}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:outputText value="#{st.name}"/>
+					<h:outputText value="#{st.name}" />
 				</h:column>
-				
+
 				<h:column>
 					<f:facet name="header">Gender</f:facet>
-					<h:outputText value="#{st.gender}"/>
+					<h:outputText value="#{st.gender}" />
 				</h:column>
-				
+
 				<h:column>
 					<f:facet name="header">Address</f:facet>
-					<h:outputText value="#{st.address}"/>
+					<h:outputText value="#{st.address}" />
 				</h:column>
 				<h:column>
 					<h:commandButton value="Select"
-						actionListener="#{studentBean.show}" onclick="submit()">
-						<f:ajax event="click" execute="@this" render=":frm1"/>
+						actionListener="#{studentBean.show}" class="buttonsel" onclick="submit()">
+						<f:ajax event="click" execute="@this" render=":frm1" />
 						<f:attribute name="kou" value="#{st}"></f:attribute>
-
 					</h:commandButton>
-
 				</h:column>
-					<h:column>
+				<h:column>
 					<h:commandButton value="Delete"
-						actionListener="#{studentBean.delete}" onclick="submit()">
-						<f:ajax event="click" execute="@this" render=":frm1"/>
+						actionListener="#{studentBean.delete}" class="buttondel" onclick="submit()" >
+						<f:ajax event="click" execute="@this" render=":frm1" />
 						<f:attribute name="kous" value="#{st}"></f:attribute>
-
 					</h:commandButton>
-
 				</h:column>
-
 			</h:dataTable>
 		</center>
 	</h:form>
-	
-	
 </h:body>
 </html>

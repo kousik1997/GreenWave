@@ -67,7 +67,8 @@ public class StudentBean {
 	
 	
 	public Connection connectDB(){  
-			Connection conn=null;
+		Connection conn=null;
+
 			String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
 			String url = "jdbc:sqlserver://192.168.1.80:1433;databaseName=Practice_DB";
 			String user = "sa";
@@ -166,6 +167,7 @@ public class StudentBean {
 		}
 		
 	}
+	
 	public void delete(ActionEvent event) {
 		Student std = (Student)event.getComponent().getAttributes().get("kous");
 		try {
