@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+</h:head>
+<h:body>
+	<h2 style="color: red">
+		<u>Enter Your Row And Column Size</u>
+	</h2>
+
+	<h:form id="frm1">
+		<h:outputLabel value="Row : " />
+		<h:inputText id="row" value="#{testBean.row}"
+			t:placeholder="Enter Your Row size">
+		</h:inputText>
+
+		<h:outputLabel value=" Column : " />
+		<h:inputText id="columns" value="#{testBean.col}"
+			t:placeholder="Enter Your Column Size">
+		</h:inputText>
+		<br />
+		<br />
+
+		<h:commandButton value="Submit" action="#{testBean.display}" />
+
+	</h:form>
+	<center>
+		<h:form>
+			<p:panelGrid >
+
+				<ui:repeat value="#{testBean.rows}">
+					<p:row>
+						<ui:repeat value="#{testBean.columns}">
+							<p:column>
+								<h:inputText />
+							</p:column>
+						</ui:repeat>
+
+					</p:row>
+
+
+				</ui:repeat>
+
+			</p:panelGrid>
+
+		</h:form>
+	</center>
+</h:body>
+</html>
