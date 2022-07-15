@@ -1,25 +1,39 @@
 package com.test;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 
 import com.test.Rows.Columns;
+
 
 
 
 @ManagedBean
 @ViewScoped
 
-public class TestBean {
+public class TestBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -285294955388824918L;
 	private int row;
 	private int col;
+	
+	private String colfild;
+	
+
+	//private List<Coltype>coltype= new ArrayList<Coltype>();
+	
+	
 
 	private List<Rows>rows= new ArrayList<Rows>();
-	private List<Columns> columns = new ArrayList<Columns>();
 
 
 	public int getCol() {
@@ -52,36 +66,43 @@ public class TestBean {
 	}
 
 
-	public List<Columns> getColumns() {
-		return columns;
+	
+
+
+
+	
+
+
+	
+
+
+	public String getColfild() {
+		return colfild;
 	}
 
 
-	public void setColumns(List<Columns> columns) {
-		this.columns = columns;
+	public void setColfild(String colfild) {
+		this.colfild = colfild;
 	}
 
 
-	public String display() {
+	public void submit(ActionEvent event) {
 
 		rows.clear();
-		columns.clear();
-		for(int i=0; i<col;i++) {
-			columns.add(new Columns(col));
+		for (int r = 0; r < row; r++) {
+			//Rows frow = new Rows();
+			List<Columns> cols = new ArrayList<Rows.Columns>();
+			for (int c = 0; c < col; c++) {
+				cols.add(new Columns("dropdown"));				
+			}
+			rows.add(new Rows(cols));
 		}
-
-		for(int j=0;j<row;j++) {
-
-			Rows rw = new Rows(row);
-			rw.getColumns().addAll(columns);
-			rows.add(rw);
-
-		}
-
-		System.out.println("Your row is :"+row);
-
-		System.out.println("Your columns is :"+col);
-		return null;
+		
 
 	}
+	
+
+	
+	
+	
 }
